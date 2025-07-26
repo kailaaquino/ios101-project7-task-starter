@@ -5,7 +5,7 @@
 import UIKit
 
 // The Task model
-struct Task {
+struct Task: Codable, Equatable{
 
     // The task's title
     var title: String
@@ -52,25 +52,60 @@ struct Task {
 
 // MARK: - Task + UserDefaults
 extension Task {
+    
+    static let tasksKey = "Tasks"
 
 
     // Given an array of tasks, encodes them to data and saves to UserDefaults.
     static func save(_ tasks: [Task]) {
 
         // TODO: Save the array of tasks
+        let defaults = UserDefaults.standard
+        let encodedData =  try! JSONEncoder().encode(tasks)
+        defaults.set(encodedData, forKey: tasksKey)
+        
     }
 
     // Retrieve an array of saved tasks from UserDefaults.
     static func getTasks() -> [Task] {
         
         // TODO: Get the array of saved tasks from UserDefaults
-
-        return [] // 👈 replace with returned saved tasks
+        let defaults = UserDefaults.standard
+        if let data = defaults.data(forKey: tasksKey) {
+            let decodedTasks = try! JSONDecoder().decode([Task].self, from: data)
+            return decodedTasks
+        }
+        else {
+            return []
+        }
     }
 
     // Add a new task or update an existing task with the current task.
     func save() {
-
+        
+        var tasks = Task.getTasks()
         // TODO: Save the current task
+        
+        // if task exist, update
+        if let idx =  tasks.firstIndex(where: { $0.id == self.id }) {
+            tasks.remove(at: idx)
+            tasks.insert(self, at: idx)
+        }
+        // else, add it
+        else {
+            tasks.append(self)
+        }
+        Task.save(tasks)
+
+    }
+    
+    // Deletes a task
+    func delete(){
+        var tasks = Task.getTasks()
+        
+        tasks.removeAll { $0.id == self.id }
+        
+        Task.save(tasks)
+
     }
 }
