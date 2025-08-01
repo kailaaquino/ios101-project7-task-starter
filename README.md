@@ -34,9 +34,20 @@ The following **additional** features are implemented:
     </a>
   </div>
 
+## Update: 
+Resubmission to show that tasks persist after the app is closed and relaunched. All the previous functionalities are in the demo video above. 
+<div>
+    <a href="https://www.loom.com/share/000e8be762c64a7c908a600f09951e11">
+      <p>Loom Message - 31 July 2025 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/000e8be762c64a7c908a600f09951e11">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/000e8be762c64a7c908a600f09951e11-5126f4dc83ddaccf-full-play.gif">
+    </a>
+  </div>
+
 ## Notes
 
-n/a 
+Resubmission to show that task persistence. The feature was there in the first submission but was not explicitly shown in the demo. 
 
 ## License
 
